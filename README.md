@@ -20,13 +20,13 @@ To be filled by Jaime
 
 ```
 protocols/
-  techniques
+  techniques/
     <technique-name>/
       <protocol-name>/
         protocol.md
         protocol.yaml
         attachments/
-  devices
+  devices/
       <protocol-name>/
         protocol.md
         protocol.yaml
@@ -44,6 +44,8 @@ LICENSE
 
 ```
 
+* `protocols/techniques` → protocols organized by technique (e.g. lithography)
+* `protocols/devices` → protocols organized by specific device type (e.g. twisted bilayer graphene)
 * `protocol.yaml` → primary STEP protocol as source for `protocol.md`
 * `protocol.md` → human-readable Markdown version generated from protocol.yaml
 * `attachments/` → supplementary material referenced by the protocol, such as images or tables
