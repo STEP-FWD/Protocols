@@ -19,18 +19,17 @@ To be filled by Jaime
 ## Repository Structure
 
 ```
-protocols/
-  techniques/
-    <technique-name>/
-      <protocol-name>/
-        protocol.md
-        protocol.yaml
-        attachments/
-  devices/
-      <protocol-name>/
-        protocol.md
-        protocol.yaml
-        attachments/
+techniques/
+  <technique-name>/
+    <protocol-name>/
+      protocol.md
+      protocol.yaml
+      attachments/
+devices/
+    <protocol-name>/
+      protocol.md
+      protocol.yaml
+      attachments/
 
 templates/
   protocol.yaml

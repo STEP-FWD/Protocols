@@ -2,28 +2,9 @@
 
 **Authors:** [Ediz Herkert](https://orcid.org/0000-0003-3040-8077)
 
-## Description
+# Description
 
-This STEP protocol defines the process parameters for fabricating patterns up to 250 μm in size with a resolution of approximately 30 – 50 nm [SI1]. It is based
-on a single-layer PMMA resist and carried out using a 30 kV Raith Elphy Plus electron-beam lithography system. Although primarily developed for lift-off applications, 
-the process can also be applied to fabricate etching masks.
-
-## Structure
-
-### Materials and equipment (ME)
-Specify all materials and equipment used, including alternatives if primary options are not available. Include details about manufacturers, models, and modifications. 
-
-### Parameters and ranges (PR)
-List and record all controlled and uncontrolled parameters. Provide a range of values tested for each critical parameter.
-
-### Issues, warnings, troubleshooting and difficulties (IWTD)
-Identify potential safety hazards, operational issues, and provide troubleshooting tips. Point out if and how a step is difficult, and how the experimenter can 
-reduce the difficulty to increase the chance of success.
-
-### Validation and expected outcomes (VEO)
-Describe the expected results or outputs clearly, including any specific observations or measurements that indicate that the process step was successful.
-
----
+This STEP protocol defines the process parameters for fabricating patterns up to 250 μm in size with a resolution of approximately 30 – 50 nm [SI1]. It is based on a single-layer PMMA resist and carried out using a 30 kV Raith Elphy Plus electron-beam lithography system. Although primarily developed for lift-off applications, the process can also be applied to fabricate etching masks.
 
 # 1. Substrate cleaning
 

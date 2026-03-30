@@ -1,0 +1,39 @@
+protocol:
+  title: Raith Elphy Plus EBL with PMMA
+  description: |
+    This STEP protocol defines the process parameters for fabricating patterns up to 250 μm in size with a resolution of approximately 30 – 50 nm [SI1]. It is based
+    on a single-layer PMMA resist and carried out using a 30 kV Inspect + Raith Elphy Plus electron-beam lithography system. Although primarily developed for lift-
+    off applications, the process can also be applied to fabricate etching masks.
+
+metadata:
+  authors:
+    - name: [Ediz Herkert](https://orcid.org/0000-0003-3040-8077)
+  created: 2025-11-04
+
+tasks:
+  - description: Substrate cleaning
+    me:  We use beakers with spout for acetone and crystalizing dishes with spout for isopropanol and distilled water.
+    pr:  -
+    iwtd:  **WARNING**: Acetone is flammable and irritating. All following sub-tasks must be carried out in a fume hood.
+    veo:  -
+    sub_tasks:
+      - description: Clean the sample by immersing it in a beaker with acetone.
+        me:  Materials: Beaker with spout, sonicator (optional), 
+         Equipment: acetone (Scharlab AC0311), tin foil.
+        pr:  Immerse the sample in acetone for 15 minutes. Sonication can improve cleaning if the sample can sustain it.
+        iwtd:  Strong sonication in acetone can break substrates. The acetone beaker should be closed with tin foil to avoid evaporation.
+        veo:  -
+
+      - description: <sub-task-description>
+        me:  <materials-and-equipment>
+        pr:  <parameters-and-ranges>
+        iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+        veo:  <validation-and-expected-outcome>
+
+  - description: <task-description>
+    sub_tasks:
+      - description: <sub-task-description>
+        me:  <materials-and-equipment>
+        pr:  <parameters-and-ranges>
+        iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+        veo:  <validation-and-expected-outcome>

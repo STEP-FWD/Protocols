@@ -1,0 +1,40 @@
+protocol:
+  title: <protocol-title>
+  description: |
+    <protocol-description>
+
+metadata:
+  authors:
+    - name: <author-name>
+  created: <yyyy-mm-dd>
+
+tasks:
+  - description: <task-description>    
+    me:  <materials-and-equipment>
+    pr:  <parameters-and-ranges>
+    iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+    veo:  <validation-and-expected-outcome>
+    sub_tasks:
+      - description: <sub-task-description>
+        me:  <materials-and-equipment>
+        pr:  <parameters-and-ranges>
+        iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+        veo:  <validation-and-expected-outcome>
+
+      - description: <sub-task-description>
+        me:  <materials-and-equipment>
+        pr:  <parameters-and-ranges>
+        iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+        veo:  <validation-and-expected-outcome>
+
+  - description: <task-description>
+    me:  <materials-and-equipment>
+    pr:  <parameters-and-ranges>
+    iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+    veo:  <validation-and-expected-outcome>
+    sub_tasks:
+      - description: <sub-task-description>
+        me:  <materials-and-equipment>
+        pr:  <parameters-and-ranges>
+        iwtd:  <issues-warnings-troubleshooting-and-difficulties>
+        veo:  <validation-and-expected-outcome>
