@@ -5,7 +5,12 @@ import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
+
+try:
+    import yaml
+except ImportError:  # pragma: no cover
+    yaml = None  # type: ignore[assignment]
 
 PROTOCOL_HEADING_PATTERN = re.compile(r"^#\s+Protocol\s*$", re.IGNORECASE)
 PLACEHOLDER_SUBSTEP_IDENTIFIER_PATTERN = re.compile(r"^[xX]\.[xX]$")
@@ -339,6 +344,72 @@ def discover_protocol_markdown_files(search_roots: List[Path]) -> List[Path]:
     return sorted({path.resolve() for path in paths})
 
 
+def extract_protocol_title(protocol_text: str, fallback: str) -> str:
+    """First `# ...` heading in protocol.md (the protocol name); skips a lone `# Protocol`."""
+    for line in protocol_text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("# "):
+            title = stripped[2:].strip()
+            if title.lower() == "protocol":
+                continue
+            return title
+    return fallback
+
+
+def _build_mkdocs_nav_entries(repository_root: Path) -> List[Dict[str, Any]]:
+    """Nav entries for MkDocs: Home, then Technique Protocols / Device Protocols sections."""
+    protocols_root = repository_root / "protocols"
+    nav: List[Dict[str, Any]] = [{"Home": "index.md"}]
+    for category, section_title in (
+        ("techniques", "Technique Protocols"),
+        ("devices", "Device Protocols"),
+    ):
+        category_path = protocols_root / category
+        if not category_path.is_dir():
+            continue
+        items: List[Dict[str, str]] = []
+        for protocol_path in sorted(category_path.rglob("protocol.md")):
+            tabular_path = protocol_path.parent / "tabular_protocol.md"
+            if not tabular_path.is_file():
+                continue
+            text = protocol_path.read_text(encoding="utf-8")
+            title = extract_protocol_title(text, fallback=protocol_path.parent.name)
+            rel = tabular_path.relative_to(protocols_root).as_posix()
+            items.append({title: rel})
+        if items:
+            nav.append({section_title: items})
+    return nav
+
+
+def rebuild_mkdocs_nav(repository_root: Path) -> None:
+    """Rewrite `docs/mkdocs.yml` `nav` with one entry per tabular protocol (title from protocol.md)."""
+    if yaml is None:
+        print(
+            "Warning: PyYAML is not installed; skipping docs/mkdocs.yml nav update. "
+            "Install with: pip install pyyaml",
+            file=sys.stderr,
+        )
+        return
+    mkdocs_path = repository_root / "docs" / "mkdocs.yml"
+    if not mkdocs_path.is_file():
+        print(f"Warning: {mkdocs_path} not found; skipping nav update.", file=sys.stderr)
+        return
+    raw = mkdocs_path.read_text(encoding="utf-8")
+    config = yaml.safe_load(raw) or {}
+    config["nav"] = _build_mkdocs_nav_entries(repository_root)
+    mkdocs_path.write_text(
+        yaml.safe_dump(
+            config,
+            sort_keys=False,
+            allow_unicode=True,
+            default_flow_style=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
 def convert_sequential_protocol_to_tabular_markdown(source_text: str) -> str:
     raw_lines = source_text.splitlines()
     lines = [line.rstrip("\r") for line in raw_lines]
@@ -403,6 +474,10 @@ def _run_batch_conversion(repository_root: Path) -> int:
             failures.append(f"{protocol_path}: {exc}")
     for message in failures:
         print(message, file=sys.stderr)
+    try:
+        rebuild_mkdocs_nav(repository_root)
+    except Exception as exc:
+        print(f"Warning: could not update docs/mkdocs.yml: {exc}", file=sys.stderr)
     return 1 if failures else 0
 
 
@@ -421,6 +496,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         sys.stdout.write(output_text)
     else:
         args.output.write_text(output_text, encoding="utf-8", newline="\n")
+        try:
+            rebuild_mkdocs_nav(repository_root)
+        except Exception as exc:
+            print(f"Warning: could not update docs/mkdocs.yml: {exc}", file=sys.stderr)
     return 0
 
 

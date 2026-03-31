@@ -1,0 +1,10 @@
+site_name: STEP-FWD
+docs_dir: ../protocols
+markdown_extensions:
+- tables
+theme:
+  name: material
+nav:
+- Home: index.md
+- Technique Protocols:
+  - EBL - Raith Elphy Plus using single-layer PMMA: techniques/ebl-raith-elphy-plus-pmma/tabular_protocol.md
