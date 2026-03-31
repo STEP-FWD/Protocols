@@ -4,9 +4,11 @@
 ### Protocol to make the structure run in your computer 
 - Step 1. Cloning this folder in your personal PC and make it work there.
 - Step 2. Running the codes. To make the mkdocs website you have to do the following:
-      - Open your terminal. I use Anaconda so I generally use Anaconda_prompt, so I ensure my pythonpath works
-      - Change directory to the directory of this folder (the code has to see the mkdocs.yaml file). In my case this is: "C:\Users\jdiez\Documents\GitHub\Protocols\YAML_STEP_Trial", so I run cd C:\Users\jdiez\Documents\GitHub\Protocols\YAML_STEP_Trial
-      - Once in the directory run: mkdocs serve. This will now run the server of the website. You can acces it by copying: http://127.0.0.1:8000/ in your preferred browser.
+  - Open your terminal. I use Anaconda so I generally use Anaconda_prompt, so I ensure my pythonpath works
+  - Change directory to the directory of this folder (the code has to see the mkdocs.yaml file). In my case this is: "C:\Users\jdiez\Documents\GitHub\Protocols\YAML_STEP_Trial"
+  - so I run cd C:\Users\jdiez\Documents\GitHub\Protocols\YAML_STEP_Trial
+      - Once in the directory run: mkdocs serve. This will now run the server of the website.
+      - You can acces it by copying: http://127.0.0.1:8000/ in your preferred browser.
 - Step 3. Now you are seeing the database. In case you want to change some protocol you would have to write a new YAML protocol (copy and modify the template_protocol.yaml), for easeness.
 - Step 4. Everytime you write a new protocol you have to:
     - Run the YAML converter (YAML_convert.py). You can run this directly in your preferred python interpreter (Spyder, Visual Studio Code) or in the terminal
