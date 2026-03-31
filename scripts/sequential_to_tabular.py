@@ -361,7 +361,7 @@ def _parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Convert sequential protocol Markdown below '# Protocol' into a pipe table. "
-            "With no input file, writes protocol_tabular.md next to each protocols/devices/**/protocol.md "
+            "With no input file, writes tabular_protocol.md next to each protocols/devices/**/protocol.md "
             "and protocols/techniques/**/protocol.md."
         ),
     )
@@ -397,7 +397,7 @@ def _run_batch_conversion(repository_root: Path) -> int:
         try:
             source_text = protocol_path.read_text(encoding="utf-8")
             output_text = convert_sequential_protocol_to_tabular_markdown(source_text)
-            output_path = protocol_path.parent / "protocol_tabular.md"
+            output_path = protocol_path.parent / "tabular_protocol.md"
             output_path.write_text(output_text, encoding="utf-8", newline="\n")
         except ValueError as exc:
             failures.append(f"{protocol_path}: {exc}")
