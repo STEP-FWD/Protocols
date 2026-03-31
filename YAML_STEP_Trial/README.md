@@ -5,7 +5,7 @@ For this, we will first start by showing how to use the structure locally, to be
 First you need to have in your computer python and MkDocs (https://www.mkdocs.org/)
 
 ### Organizing the structure 
-Now in the folder where you store your python files make the following folder structure:
+Now in the folder where you store your python files make the structure as it is in this folder (You could just copy this folder directly)::
 
 - docs 
     - Protocol_X.yaml
@@ -13,6 +13,7 @@ Now in the folder where you store your python files make the following folder st
     - index.md
 - YAML_comvert.py
 - mkdocs.yaml
+- README.md
 
 #### What does each file do? 
 - mkdocs: is the leading file. This will create the "website" of the project.
