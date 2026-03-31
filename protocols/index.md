@@ -109,7 +109,7 @@ Each STEP protocol follows a structured format:
 * Protocol description
 * Steps and sub-steps including:
   * Materials and equipment (ME)
-  * Parameters and ranges
+  * Parameters and ranges (PR)
   * Issues, warnings, troubleshooting, and difficulties (IWTD)
   * Validation and expected outcomes (VEO)
 * Attachments
