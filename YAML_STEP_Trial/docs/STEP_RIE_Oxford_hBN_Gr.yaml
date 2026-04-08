@@ -1,0 +1,234 @@
+# Converted from techniques/RIE/STEP_RIE_Oxford_hBN_Gr.pptx — edit here and re-run import_yaml.py
+
+protocol:
+  id: rie_oxford_hbn_gr_v1
+  title: Dry etching of hBN / graphene heterostructures (Oxford RIE)
+
+category: RIE
+
+metadata:
+  authors:
+    - Bianca Turini
+    - Neha Bhatia
+  created: 2025-11-21
+  last_modified: 2026-02-11
+
+description: >
+  Reactive ion etching (RIE) of 2D material stacks using SF6-, O2-, and CHF3-based recipes
+  on the Oxford Plasmalab 100. Processes are tuned for small samples on Si substrate chips
+  (~5 mm). Assumes the etch mask is already prepared; see related STEP protocols for optical
+  or e-beam lithography.
+
+sections:
+  - id: oxford_rie_main
+    title: Oxford Plasmalab 100 — main procedure
+
+    steps:
+      - id: 1.0
+        task: Chip preparation
+        subtask: >
+          Blow dry the chip to remove possibly deposited dirt. Assumes the etching mask was
+          prepared per your protocol and the sample is ready to etch. For lithography, see
+          the related STEP protocol (optical / e-beam).
+        materials: Nitrogen gun, tweezers.
+        parameters: >
+          Blow dry 5–10 s at ~45° to the surface. Gas flow setting is not critical if the jet
+          reaches the chip and displaces debris. Angle is not critical.
+        warnings: >
+          Hold the chip securely. At startup, nitrogen pressure can exceed the setpoint and the
+          flow may carry debris — avoid exposing the sample for the first few seconds.
+          The etch mask must be thick and robust enough for the full etch; O2 in particular
+          affects PMMA masks.
+        verification: >
+          Optical inspection: substrate looks clean; no hair or dust.
+
+      - id: 2.0
+        task: Chamber inspection
+        subtask: ""
+        materials: Oxford RIE (Plasmalab 100; add exact model in lab docs).
+        parameters: ""
+        warnings: ""
+        verification: ""
+
+      - id: 2.1
+        task: Chamber inspection
+        subtask: >
+          Confirm the previous user ran an oxygen-based chamber clean after their process
+          (“O2 clean”, Appendix). In Process / Log View, check the last process, parameters,
+          and that there was no error.
+        materials: ""
+        parameters: ""
+        warnings: ""
+        verification: ""
+
+      - id: 2.2
+        task: Chamber inspection
+        subtask: >
+          Confirm the dummy Si wafer is in the loadlock and shown in System / Pumping. This
+          wafer is for chamber cleaning only.
+        materials: ""
+        parameters: ""
+        warnings: >
+          After “O2 clean”, the dummy can remain in the main chamber while the software thinks
+          it is in the loadlock — contact cleanroom staff. You can check loadlock status from
+          the loadlock window without venting. In the chamber viewport, a thin line below the
+          upper disk indicates a wafer inside (use a flashlight if needed).
+        verification: ""
+
+      - id: 3.0
+        task: Select gases
+        subtask: >
+          Select the process gas for your etching recipe. The panel has two valves per line:
+          upper = gas to chamber on/off; lower = flow (do not adjust — the tool sets flow).
+        materials: >
+          Required gases for the recipe; He and N2 are mandatory support gases in addition to
+          process gases. Only operate top-row valves to enable or disable delivery.
+        parameters: ""
+        warnings: >
+          Do not adjust bottom-row flow-control valves. Keep He and N2 supply valves open at
+          all times.
+        verification: ""
+
+      - id: 4.0
+        task: Remove dummy wafer and insert your wafer
+        subtask: ""
+        materials: ""
+        parameters: ""
+        warnings: ""
+        verification: ""
+
+      - id: 4.1
+        task: Remove dummy wafer and insert your wafer
+        subtask: >
+          Dummy wafer removal: stop evacuation, vent the loadlock, wait until atmospheric
+          (~300 s), remove the dummy wafer.
+        materials: ""
+        parameters: ""
+        warnings: ""
+        verification: ""
+
+      - id: 4.2
+        task: Remove dummy wafer and insert your wafer
+        subtask: >
+          Wafer insertion: place your sample wafer in the loadlock, close it, stop venting,
+          pump down. Enter sample name or process ID when prompted after evacuation.
+        materials: >
+          Dedicated Si carrier wafer per process; obtain spares from cleanroom staff or
+          purchase as required.
+        parameters: ""
+        warnings: ""
+        verification: >
+          Optically verify through the loadlock that the dummy was replaced correctly.
+
+      - id: 5.0
+        task: Preconditioning
+        subtask: ""
+        materials: ""
+        parameters: ""
+        warnings: ""
+        verification: ""
+
+      - id: 5.1
+        task: Preconditioning
+        subtask: >
+          Load the preconditioning recipe (Process → Recipe → Load Recipe). Cleans the
+          chamber; if the prior user ran O2 clean, preconditioning can be short.
+        materials: ""
+        parameters: >
+          Typical guideline: ~2 minutes per gas used in the upcoming recipe. See Supplementary
+          for recipe edits (S1). Do not save changes to a recipe unless you created it.
+        warnings: >
+          Some recipes should not be preconditioned with specific gases before the first step
+          due to residuals; for standard 1D contact recipes this is usually not an issue.
+        verification: ""
+
+      - id: 5.2
+        task: Preconditioning
+        subtask: >
+          Run the loaded recipe; monitor via Process → Chamber 1. Log parameters in the lab
+          logbook in real time.
+        materials: ""
+        parameters: >
+          If parameters were not visible live, retrieve them later via Process → Log View
+          using the process name you assigned. Wait until base pressure is adequate before
+          start; the system delays until vacuum is OK. Confirm wafer transfer to the main
+          chamber via the interface indicators.
+        warnings: ""
+        verification: ""
+
+      - id: 6.0
+        task: Run your etch recipe
+        subtask: >
+          After preconditioning, confirm the wafer is in the loadlock. Center the sample on
+          the carrier, keep the surface clean, assign an ID, load the process recipe, run,
+          then unload when finished. Document everything in the logbook.
+        materials: Sample as prepared for etching.
+        parameters: ""
+        warnings: ""
+        verification: >
+          Take a micrograph before loading if possible. After the run, compare etched vs
+          protected regions by optical contrast (contrast depends on sample and recipe).
+          For small features, use SEM or AFM (AFM especially if the mask was e-beam resist).
+          Dense 2D lattices may still show optical contrast.
+
+      - id: 7.0
+        task: O2 clean (handover)
+        subtask: >
+          Remove your sample and carrier from the loadlock, install the dummy wafer, run the
+          O2 cleaning recipe for the next user.
+        materials: ""
+        parameters: >
+          Typically ~30 minutes O2 clean; schedule instrument time with this buffer included.
+        warnings: ""
+        verification: ""
+
+references: ""
+
+supplementary: |
+  ## Recipe tables (from STEP_RIE_Oxford_hBN_Gr)
+
+  ### SF6-based selective hBN etching
+  | Parameter   | Value   |
+  |-------------|---------|
+  | SF6         | 40 sccm |
+  | Pressure    | 90 Pa   |
+  | RF power    | 20 W    |
+  | ICP power   | 0 W     |
+  | Table temp. | 20 °C   |
+  | Backside He | 10 Torr |
+
+  Note resulting bias as logged by the tool.
+
+  ### O2-based selective graphene etching
+  | Parameter   | Value   |
+  |-------------|---------|
+  | O2          | 20 sccm |
+  | Pressure    | 80 Pa   |
+  | RF power    | 20 W    |
+  | ICP power   | 0 W     |
+  | Table temp. | 20 °C   |
+  | Backside He | 10 Torr |
+
+  ### CHF3 / O2 non-selective etching
+  | Parameter   | Value   |
+  |-------------|---------|
+  | CHF3        | 40 sccm |
+  | O2          | 4 sccm  |
+  | Pressure    | 90 Pa   |
+  | RF power    | 60 W    |
+  | ICP power   | 0 W     |
+  | Table temp. | 20 °C   |
+  | Backside He | 10 Torr |
+
+  Typical DC bias ~250 V (as reported for this recipe).
+
+  ### S1 — Recipe modification (software)
+  - Edit steps with **Edit Step** (pressure, forward power, gas flows, duration).
+  - **Delete Step** removes a step temporarily; if the recipe is not saved, the step remains.
+  - **Do not save** changes to recipes you did not create; duplicate into a new recipe instead.
+
+  ### Examples (slides)
+  - **Example 1:** Two-step selective etch (SF6 then O2) for graphene contacts in hBN/graphene/hBN:
+    control windows etch fully; contact windows leave bottom hBN (color difference resist vs etched).
+  - **Example 2:** Single-step CHF3/O2 etch of hBN lattices: control regions clear; dense lattices
+    show contrast even below optical resolution.
