@@ -66,6 +66,13 @@ def resolve_inheritance(protocols, proto):
 # Render protocol (IMPROVED UI)
 # ------------------------
 
+def _table_cell(val):
+    """Single-line markdown table cell: YAML blocks often end with \\n which breaks pipe tables."""
+    if val is None:
+        return ""
+    return " ".join(str(val).split())
+
+
 def render(protocol):
     out = []
     # Title
@@ -88,7 +95,15 @@ def render(protocol):
         out.append("|------|------|-------|------------|----------|--------------|---------|")
 
         for step in section["steps"]:
-            row = f"| {step.get('id','')} | {step.get('task','')} | {step.get('subtask','')} | {step.get('materials','')} | {step.get('parameters','')} | {step.get('warnings','')} | {step.get('verification','')} |"
+            row = "| {} | {} | {} | {} | {} | {} | {} |".format(
+                _table_cell(step.get("id")),
+                _table_cell(step.get("task")),
+                _table_cell(step.get("subtask")),
+                _table_cell(step.get("materials")),
+                _table_cell(step.get("parameters")),
+                _table_cell(step.get("warnings")),
+                _table_cell(step.get("verification")),
+            )
             out.append(row)
 
         out.append("\n")
