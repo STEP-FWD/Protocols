@@ -1,0 +1,31 @@
+# Minimal protocol for testing GitHub Actions YAML → Markdown conversion.
+# Remove this file when you no longer need the CI smoke test.
+
+protocol:
+  id: test_github_action_v1
+  title: GitHub Action conversion test
+
+category: test_ci
+
+metadata:
+  authors:
+    - CI test
+  created: 2026-04-08
+  last_modified: 2026-04-08
+
+description: |
+  This protocol exists to verify that **pushing a YAML file** under `docs/` triggers the
+  workflow and regenerates the matching `.md` file.
+
+sections:
+  - id: test_github_action_v1
+    title: Single test section
+
+    steps:
+      - id: 1.0
+        task: Push this branch to GitHub
+        subtask: Open Actions and confirm the workflow ran
+        materials: A repository with this workflow enabled
+        parameters: workflow_dispatch or a push that changes *.yaml
+        warnings: "If the job cannot push, check branch protection and contents write permission"
+        verification: "test_ci/test_github_action_v1.md should appear or update in the repo"

@@ -21,6 +21,10 @@ Protocols are version-controlled, modular, and inheritable.
 - [Inheriting protocols template](STEP_template/inheriting_protocol_v1.md)
 - [Template for STEP protocols](STEP_template/protocol_template_v1.md)
 
+### Test Ci
+
+- [GitHub Action conversion test](test_ci/test_github_action_v1.md)
+
 ### 2D Materials
 
 - [MoS2 exfoliation protocol](2d_materials/exfoliation_MoS2_v1.md)
