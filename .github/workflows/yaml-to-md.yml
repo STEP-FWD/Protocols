@@ -1,5 +1,5 @@
 # Regenerates Markdown, index.md, and mkdocs.yml from protocol YAML files
-# using YAML_STEP_Trial/import_yaml.py. YAML sources must live directly under
+# using YAML_STEP_Trial/import_yaml.py. Protocol YAML must live directly under
 # YAML_STEP_Trial/docs/ (see load_protocols() in import_yaml.py).
 
 name: YAML to Markdown
